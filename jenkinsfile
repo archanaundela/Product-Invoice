@@ -1,19 +1,25 @@
-
 pipeline {
     agent any
-
     stages {
+        stage('Checkout') {
+            steps {
+                echo 'Source Code checkout completed'
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building the project'
                 bat 'mvn clean compile'
             }
         }
-
         stage('Test') {
             steps {
-                echo 'Testing the project'
                 bat 'mvn test'
+            }
+        }
+        stage('package')
+        {
+            steps{
+                bat 'mvn package'
             }
         }
     }
